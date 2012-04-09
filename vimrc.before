@@ -1,3 +1,5 @@
 let mapleader = "," " Change mapleader to ,
-" Disable SuperTab. I'd rather have SnipMate, and ctrl+n is fine for me.
-call janus#disable_plugin('supertab')
+
+call janus#disable_plugin('fugitive', "I prefer the command line.")
+call janus#disable_plugin('sampler-pack', 'Whoa.. Too many colors.')
+call janus#disable_plugin('janus-colors', 'Whoa.. Too many colors.')

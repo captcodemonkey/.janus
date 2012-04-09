@@ -1,6 +1,33 @@
 color default
 set nonumber
 
-" Display the BufferGator window at the bottom of the screen.
-"let g:buffergator_viewport_split_policy = 'B'
-"let g:buffergator_split_size = '5'
+" I like it better when the filename is used for the search. Toggle this with
+" <c-d>
+let g:ctrlp_by_filename = 1
+
+" Create directional shortcuts for moving between splits
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-l> <C-W>l
+nmap <C-h> <C-W>h
+
+imap jj <Esc>
+
+" Stolen from:
+" http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
+set statusline=%t\       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}] "file encoding
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
+" Suppress the keymappings from Buffergator
+let g:buffergator_suppress_keymaps=1
+" Don't resize my window! You are making me seasick!
+let g:buffergator_autoexpand_on_split=0
+map <leader>b :BuffergatorToggle<cr>
