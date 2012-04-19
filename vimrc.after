@@ -1,5 +1,7 @@
-color default
+" I really really think line numbers are ugly. They are in my status line
+" anyway!
 set nonumber
+set wrap
 
 " I like it better when the filename is used for the search. Toggle this with
 " <c-d>
@@ -16,11 +18,10 @@ imap jj <Esc>
 " Stolen from:
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
 set statusline=%t\       "tail of the filename
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}] "file encoding
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
+set statusline+=%m\      "modified flag
+set statusline+=%y\      "filetype
+set statusline+=b%-3.3n\  "buffer number
 set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
@@ -31,3 +32,22 @@ let g:buffergator_suppress_keymaps=1
 " Don't resize my window! You are making me seasick!
 let g:buffergator_autoexpand_on_split=0
 map <leader>b :BuffergatorToggle<cr>
+" Display the BufferGator window at the Top of the screen.
+let g:buffergator_viewport_split_policy = 'T'
+let g:buffergator_split_size = '10'
+
+" Show in tree.
+map <leader>N :NERDTreeFind<cr>
+
+" Close buffer but not window.
+map <leader>d :Kwbd<cr>
+" Go to next buffer
+map <leader>. :bn<cr>
+" Go to previous buffer
+map <leader>m :bp<cr>
+
+" Remove trailing whitespace.
+map <leader>s :%s/\s\+$//e<cr>
+
+" CTAGS - use an explicit path or the Mac one will be used.
+map <F8> :!/usr/local/bin/ctags -R --tag-relative=yes --langmap=php:.profile.engine.inc.module.theme.php --php-kinds=+f --languages=php --recurse<CR>
