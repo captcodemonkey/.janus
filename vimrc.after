@@ -51,3 +51,38 @@ map <leader>s :%s/\s\+$//e<cr>
 
 " CTAGS - use an explicit path or the Mac one will be used.
 map <F8> :!/usr/local/bin/ctags -R --tag-relative=yes --langmap=php:.profile.engine.inc.module.theme.php --php-kinds=+f --languages=php --recurse<CR>
+
+" Enable syntastic syntax checking
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=0
+let g:syntastic_phpcs_conf='--standard=Drupal --extensions=php,module,inc,install,test,profile,theme'
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['php'],
+                           \ 'passive_filetypes': [] }
+" Check php files for errors
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+
+function! PHPsynCHK()
+  let winnum =winnr() " get current window number
+  silent make -l %
+  cw " open the error window if it contains error
+  " return to the window with cursor set on the line of the first error (if any)
+  execute winnum . "wincmd w"
+endfunction
+" Map <CTRL>-I to check the file for syntax
+:noremap <C-I> :call PHPsynCHK()<CR>
+
+" Edit my todo.txt fast
+map <leader>td :e ~/Dropbox/todo/todo.txt<cr>
+
+function! HandleURL()
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  echo s:uri
+  if s:uri != ""
+    silent exec "!open '".s:uri."'"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+map <leader>` :call HandleURL()<cr>
