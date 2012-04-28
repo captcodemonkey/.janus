@@ -1,3 +1,6 @@
 [submodule "easymotion"]
 	path = easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "naxoc-snippets"]
+	path = naxoc-snippets
+	url = git@github.com:naxoc/snipmate-snippets.git
