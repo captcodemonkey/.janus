@@ -5,3 +5,4 @@ call janus#disable_plugin('vroom', 'I use Ruby too little to have this make sens
 call janus#disable_plugin('sampler-pack', 'Whoa.. Too many colors.')
 call janus#disable_plugin('janus-colors', 'Whoa.. Too many colors.')
 call janus#disable_plugin('snipmate-snippets', 'I keep my own snippets in my .janus dir')
+call janus#disable_plugin('buffergator', 'CtrlP has a kind of buffergator.')

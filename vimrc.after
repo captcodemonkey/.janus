@@ -3,9 +3,6 @@
 set nonumber
 set wrap
 
-" I like it better when the filename is used for the search. Toggle this with
-" <c-d>
-let g:ctrlp_by_filename = 1
 
 " Create directional shortcuts for moving between splits
 nmap <C-j> <C-W>j
@@ -28,13 +25,28 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
 " Suppress the keymappings from Buffergator
-let g:buffergator_suppress_keymaps=1
+"let g:buffergator_suppress_keymaps=1
 " Don't resize my window! You are making me seasick!
-let g:buffergator_autoexpand_on_split=0
-map <leader>b :BuffergatorToggle<cr>
+"let g:buffergator_autoexpand_on_split=0
+"map <leader>b :BuffergatorToggle<cr>
 " Display the BufferGator window at the Top of the screen.
-let g:buffergator_viewport_split_policy = 'T'
-let g:buffergator_split_size = '10'
+"let g:buffergator_viewport_split_policy = 'T'
+"let g:buffergator_split_size = '10'
+
+" I like it better when the filename is used for the search. Toggle this with
+" <c-d>
+let g:ctrlp_by_filename = 1
+" Map the buffer switcher.
+map <leader>b :CtrlPBuffer<cr>
+" Map the recent files.
+map <leader>r :CtrlPMRUFiles<cr>
+" Map find-tag-in-buffer.
+map <leader>t :CtrlPBufTag<cr>
+" Map find-tag-in-all-buffers.
+map <leader>ta :CtrlPBufTagAll<cr>
+" Enable these extensions. Cycle through them with ctrl-f and ctrl-b when the
+" CtrlP window is open.
+let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " Show in tree.
 map <leader>N :NERDTreeFind<cr>
@@ -70,11 +82,14 @@ function! PHPsynCHK()
   " return to the window with cursor set on the line of the first error (if any)
   execute winnum . "wincmd w"
 endfunction
-" Map <CTRL>-I to check the file for syntax
-:noremap <C-I> :call PHPsynCHK()<CR>
+" Map <CTRL>-i to check the file for syntax
+:noremap <leader>i :call PHPsynCHK()<CR>
 
 " Edit my todo.txt fast
 map <leader>td :e ~/Dropbox/todo/todo.txt<cr>
+
+" Put my vimwiki in my Dropbox
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 
 function! HandleURL()
   let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
