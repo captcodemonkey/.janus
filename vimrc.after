@@ -2,7 +2,10 @@
 " anyway!
 set nonumber
 set wrap
+set hidden
 
+" I hit wq all the time when I just want to save. Disable that.
+cmap wq w
 
 " Create directional shortcuts for moving between splits
 nmap <C-j> <C-W>j
@@ -33,9 +36,6 @@ set statusline+=\ %P    "percent through file
 "let g:buffergator_viewport_split_policy = 'T'
 "let g:buffergator_split_size = '10'
 
-" I like it better when the filename is used for the search. Toggle this with
-" <c-d>
-let g:ctrlp_by_filename = 1
 " Map the buffer switcher.
 map <leader>b :CtrlPBuffer<cr>
 " Map the recent files.
@@ -74,6 +74,8 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " Check php files for errors
 set makeprg=php\ -l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
+
+autocmd BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker={,}
 
 function! PHPsynCHK()
   let winnum =winnr() " get current window number
