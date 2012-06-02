@@ -3,9 +3,20 @@
 set nonumber
 set wrap
 set hidden
+set clipboard=unnamed
 
 " I hit wq all the time when I just want to save. Disable that.
 cmap wq w
+" I also hit f1 when scrambling for esc, so just remap that while we are at
+" it.
+map! <f1> <esc>
+" I never type jj, so make that esc now that we are stealing keys anyway.
+imap jj <Esc>
+
+" Enable spellchecking conditionally
+map <Leader>se :setlocal spell spelllang=en_us<CR>
+map <Leader>sd :setlocal spell spelllang=da_dk<CR>
+map <Leader>sn :setlocal nospell<CR>
 
 " Create directional shortcuts for moving between splits
 nmap <C-j> <C-W>j
@@ -13,7 +24,6 @@ nmap <C-k> <C-W>k
 nmap <C-l> <C-W>l
 nmap <C-h> <C-W>h
 
-imap jj <Esc>
 
 " Stolen from:
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
