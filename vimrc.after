@@ -7,6 +7,8 @@ set clipboard=unnamed
 
 " I hit wq all the time when I just want to save. Disable that.
 cmap wq w
+" Hitting uppercase w is also a classic.
+cmap W w
 " I also hit f1 when scrambling for esc, so just remap that while we are at
 " it.
 map! <f1> <esc>
@@ -23,6 +25,9 @@ nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
 nmap <C-l> <C-W>l
 nmap <C-h> <C-W>h
+
+map <Leader>f :Ack<CR>
+map <Leader>z :BufOnly<CR>
 
 " Stolen from:
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
